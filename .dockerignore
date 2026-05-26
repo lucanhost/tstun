@@ -1,0 +1,23 @@
+# Build output
+tstun
+bin/
+
+# tsnet state (contains private keys)
+tsnet_state/
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Docs
+README.md
+LICENSE
+*.md
+
+# Config (secrets)
+Caddyfile
+.env

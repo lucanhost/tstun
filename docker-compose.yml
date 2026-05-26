@@ -1,0 +1,15 @@
+services:
+  tstun:
+    build: .
+    restart: unless-stopped
+    environment:
+      - TS_AUTH_KEY=${TS_AUTH_KEY}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/tstun/Caddyfile:ro
+      - tsnet_state:/data/tsnet_state
+
+volumes:
+  tsnet_state:

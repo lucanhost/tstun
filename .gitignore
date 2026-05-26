@@ -1,0 +1,27 @@
+# Build output
+tstun
+bin/
+
+# Go
+vendor/
+
+# tsnet state (contains private keys)
+tsnet_state/
+
+# Config (contains auth keys — use Caddyfile.example as template)
+Caddyfile
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Caddy autosave
+autosave.json

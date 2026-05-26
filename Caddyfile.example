@@ -1,0 +1,13 @@
+{
+	tsnet {
+		auth_key {env.TS_AUTH_KEY}
+		hostname "my-proxy"
+		state_dir "./tsnet_state"
+	}
+}
+
+app.example.com {
+	reverse_proxy backend-node:8080 {
+		transport tsnet
+	}
+}
