@@ -1,6 +1,6 @@
 module github.com/lucanhost/tstun
 
-go 1.26.3
+go 1.26
 
 require (
 	github.com/caddyserver/caddy/v2 v2.11.3
