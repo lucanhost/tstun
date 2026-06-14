@@ -3,6 +3,8 @@ package tstun
 import (
 	"context"
 	"testing"
+
+	"github.com/caddyserver/caddy/v2"
 )
 
 func TestAppCaddyModule(t *testing.T) {
@@ -51,10 +53,36 @@ func TestAppValidate(t *testing.T) {
 	}
 }
 
+func TestAppProvision(t *testing.T) {
+	app := &App{
+		Hostname: "test-node",
+	}
+	if err := app.Provision(caddy.Context{}); err != nil {
+		t.Errorf("Provision() returned unexpected error: %v", err)
+	}
+	if app.tsServer == nil {
+		t.Fatal("Provision() should initialize tsServer")
+	}
+}
+
+func TestAppProvisionWithStateDir(t *testing.T) {
+	app := &App{
+		Hostname: "test-node",
+		StateDir: "./tsnet_state",
+	}
+	if err := app.Provision(caddy.Context{}); err != nil {
+		t.Errorf("Provision() with state_dir returned unexpected error: %v", err)
+	}
+	if app.tsServer == nil {
+		t.Fatal("Provision() should initialize tsServer")
+	}
+}
+
 func TestAppStart(t *testing.T) {
 	app := &App{}
-	if err := app.Start(); err != nil {
-		t.Errorf("Start() returned unexpected error: %v", err)
+	// Start without provisioning should fail since tsServer is nil
+	if err := app.Start(); err == nil {
+		t.Error("Start() with nil server should return error")
 	}
 }
 

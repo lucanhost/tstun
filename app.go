@@ -50,16 +50,17 @@ func (a *App) Provision(ctx caddy.Context) error {
 		a.tsServer.Dir = absDir
 	}
 
-	if err := a.tsServer.Start(); err != nil {
-		return fmt.Errorf("failed to start tsnet server: %w", err)
-	}
-
 	return nil
 }
 
 // Start implements caddy.App.
 func (a *App) Start() error {
-	// Server is already started in Provision
+	if a.tsServer == nil {
+		return errors.New("tsnet server not initialized")
+	}
+	if err := a.tsServer.Start(); err != nil {
+		return fmt.Errorf("failed to start tsnet server: %w", err)
+	}
 	return nil
 }
 

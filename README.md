@@ -46,7 +46,7 @@ The upstream address (`my-server:8080`) is a Tailscale MagicDNS hostname or Tail
 
 ## Build
 
-Requires Go 1.26+.
+Requires Go 1.26.3+.
 
 ```bash
 go build -o tstun ./cmd/tstun
